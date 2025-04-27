@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="logo">Doodles</div>
+  <div class="top-right-controls">
+    <div class="theme-selector">
+      <div class="theme-icon">🎨</div>
+      <div class="theme-dropdown">
+        <div class="theme-option" data-theme="sky" style="--gradient-start: #87CEEB; --gradient-end: #DEB887;">
+          <span class="theme-preview"></span>
+          <span class="theme-name">Sky & Sand</span>
+        </div>
+        <div class="theme-option" data-theme="sunset" style="--gradient-start: #FF6B6B; --gradient-end: #4ECDC4;">
+          <span class="theme-preview"></span>
+          <span class="theme-name">Sunset Sea</span>
+        </div>
+        <div class="theme-option" data-theme="forest" style="--gradient-start: #67B26F; --gradient-end: #4ca2cd;">
+          <span class="theme-preview"></span>
+          <span class="theme-name">Forest Lake</span>
+        </div>
+        <div class="theme-option" data-theme="lavender" style="--gradient-start: #E6E6FA; --gradient-end: #B19CD9;">
+          <span class="theme-preview"></span>
+          <span class="theme-name">Lavender Mist</span>
+        </div>
+        <div class="theme-option" data-theme="cherry" style="--gradient-start: #FFB7B7; --gradient-end: #727272;">
+          <span class="theme-preview"></span>
+          <span class="theme-name">Cherry Smoke</span>
+        </div>
+      </div>
+    </div>
+    <div class="language-selector">
+      <div class="language-toggle">
+        <span class="current-lang">EN</span>
+        <div class="lang-dropdown">
+          <div class="lang-option" data-lang="en">
+            <span class="lang-flag">🇬🇧</span>
+            <span class="lang-text">English</span>
+          </div>
+          <div class="lang-option" data-lang="lv">
+            <span class="lang-flag">🇱🇻</span>
+            <span class="lang-text">Latviešu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-icon">
+      <div class="profile-circle">
+        <div class="profile-initial">E</div>
+      </div>
+      <div class="profile-dropdown">
+        <div class="dropdown-header">
+          <span class="user-name">Evita Millere</span>
+          <span class="user-email">evita@example.com</span>
+        </div>
+        <div class="dropdown-item">
+          <span class="item-icon">👤</span>
+          <span class="item-text">My Profile</span>
+        </div>
+        <div class="dropdown-item">
+          <span class="item-icon">⚙️</span>
+          <span class="item-text">Settings</span>
+        </div>
+        <div class="dropdown-item">
+          <span class="item-icon">🎨</span>
+          <span class="item-text">Theme</span>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-item logout">
+          <span class="item-icon">🚪</span>
+          <span class="item-text">Sign Out</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ei-grid">
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
