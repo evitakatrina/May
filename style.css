@@ -501,8 +501,9 @@
     }
     
     .top-right-controls {
-      flex-direction: column;
-      align-items: flex-end;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.8rem;
     }
     
     .language-toggle,
