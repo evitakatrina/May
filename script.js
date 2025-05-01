@@ -89,24 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Time update functionality
-function updateTime() {
-    const timeElement = document.getElementById('time');
-    
-    const now = new Date();
-    const options = {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-        timeZone: 'Europe/Helsinki',
-    };
-    const formattedTime = new Intl.DateTimeFormat(currentLanguage === 'lv' ? 'lv-LV' : 'en-GB', options).format(now);
-    
-    timeElement.textContent = formattedTime;
-}
-
-setInterval(updateTime, 60000);
-
 // Theme switching functionality
 document.addEventListener('DOMContentLoaded', () => {
     const themeOptions = document.querySelectorAll('.theme-option');

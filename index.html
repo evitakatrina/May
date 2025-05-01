@@ -10,9 +10,192 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+  <style>
+    .cards-section {
+      margin-top: 40px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .calendar-header {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      font-family: "Single Day", cursive;
+      font-size: clamp(14px, 2vw, 18px);
+    }
+
+    .weekdays div:nth-child(4),
+    .weekdays div:nth-child(5),
+    .weekdays div:nth-child(6),
+    .weekdays div:nth-child(7) {
+      position: relative;
+      top: 0;
+    }
+
+    .weekdays div:nth-child(1),
+    .weekdays div:nth-child(2),
+    .weekdays div:nth-child(3) {
+      position: relative;
+      top: 200px;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: clamp(5px, 1.5vw, 10px);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 clamp(10px, 2vw, 20px);
+    }
+
+    .card {
+      aspect-ratio: 1/1;
+      perspective: 1000px;
+      cursor: pointer;
+      min-width: clamp(80px, 12vw, 120px);
+      min-height: clamp(80px, 12vw, 120px);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .card-front {
+      background-color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .card-back {
+      background-color: rgba(255, 255, 255, 0.7);
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(8px, 1.5vw, 15px);
+      font-size: clamp(10px, 1.5vw, 14px);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .day-number {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: clamp(10px, 1.5vw, 12px);
+      font-weight: bold;
+      color: #333;
+    }
+
+    @media (max-width: 1200px) {
+      .cards-container {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .weekdays {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .weekdays div:nth-child(1),
+      .weekdays div:nth-child(2),
+      .weekdays div:nth-child(3) {
+        top: 150px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .cards-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .weekdays {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .weekdays div:nth-child(1),
+      .weekdays div:nth-child(2),
+      .weekdays div:nth-child(3) {
+        top: 120px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .weekdays {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .weekdays div:nth-child(1),
+      .weekdays div:nth-child(2),
+      .weekdays div:nth-child(3) {
+        top: 100px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .weekdays {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .weekdays div:nth-child(1),
+      .weekdays div:nth-child(2),
+      .weekdays div:nth-child(3) {
+        top: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="logo">Doodles</div>
+  <div class="logo">May the force be with you</div>
   <div class="top-right-controls">
     <div class="theme-selector">
       <div class="theme-icon">🎨</div>
@@ -60,25 +243,8 @@
       </div>
       <div class="profile-dropdown">
         <div class="dropdown-header">
-          <span class="user-name">Evita Millere</span>
-          <span class="user-email">evita@example.com</span>
-        </div>
-        <div class="dropdown-item">
-          <span class="item-icon">👤</span>
-          <span class="item-text">My Profile</span>
-        </div>
-        <div class="dropdown-item">
-          <span class="item-icon">⚙️</span>
-          <span class="item-text">Settings</span>
-        </div>
-        <div class="dropdown-item">
-          <span class="item-icon">🎨</span>
-          <span class="item-text">Theme</span>
-        </div>
-        <div class="dropdown-divider"></div>
-        <div class="dropdown-item logout">
-          <span class="item-icon">🚪</span>
-          <span class="item-text">Sign Out</span>
+          <span class="user-name">Evita Katrina Millere</span>
+          <span class="user-email">evitakatrina@gmail.com</span>
         </div>
       </div>
     </div>
@@ -86,6 +252,422 @@
 
   <div class="ei-grid">
     
+  </div>
+
+  <div class="cards-section">
+    <div class="weekdays">
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+      <div>Sun</div>
+    </div>
+    <div class="cards-container">
+      <!-- Empty cells for April 28-30 -->
+      <div class="card empty"></div>
+      <div class="card empty"></div>
+      <div class="card empty"></div>
+      <!-- May 1 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">1</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/1.jpg" alt="Photo 1">
+          </div>
+          <div class="card-back">
+            Why don't eggs tell jokes? Because they'd crack each other up.
+          </div>
+        </div>
+      </div>
+      <!-- May 2 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">2</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/2.jpg" alt="Photo 2">
+          </div>
+          <div class="card-back">
+            What do you call fake spaghetti? An impasta.
+          </div>
+        </div>
+      </div>
+      <!-- May 3 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">3</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/3.jpg" alt="Photo 3">
+          </div>
+          <div class="card-back">
+            Why did the bicycle fall over? It was two-tired.
+          </div>
+        </div>
+      </div>
+      <!-- May 4 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">4</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/4.jpg" alt="Photo 4">
+          </div>
+          <div class="card-back">
+            How does the ocean say hi? It waves.
+          </div>
+        </div>
+      </div>
+      <!-- May 5 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">5</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/5.jpg" alt="Photo 5">
+          </div>
+          <div class="card-back">
+            What do you call a bear with no teeth? A gummy bear.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 6 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">6</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/6.jpg" alt="Photo 6">
+          </div>
+          <div class="card-back">
+            Why don't some couples go to the gym? Because some relationships don't work out.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 7 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">7</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/7.jpg" alt="Photo 7">
+          </div>
+          <div class="card-back">
+            What do you call cheese that isn't yours? Nacho cheese!
+          </div>
+        </div>
+      </div>
+
+      <!-- May 8 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">8</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/8.jpg" alt="Photo 8">
+          </div>
+          <div class="card-back">
+            Why did the golfer bring two pairs of pants? In case he got a hole in one.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 9 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">9</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/9.jpg" alt="Photo 9">
+          </div>
+          <div class="card-back">
+            How do you organize a space party? You planet.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 10 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">10</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/10.jpg" alt="Photo 10">
+          </div>
+          <div class="card-back">
+            What do you call a can opener that doesn't work? A can't opener.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 11 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">11</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/11.jpg" alt="Photo 11">
+          </div>
+          <div class="card-back">
+            Why don't scientists trust atoms? Because they make up everything.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 12 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">12</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/12.jpg" alt="Photo 12">
+          </div>
+          <div class="card-back">
+            How does a snowman get around? By riding an icicle.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 13 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">13</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/13.jpg" alt="Photo 13">
+          </div>
+          <div class="card-back">
+            Why did the math book look sad? It had too many problems.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 14 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">14</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/14.jpg" alt="Photo 14">
+          </div>
+          <div class="card-back">
+            What kind of music do mummies like? Wrap music.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 15 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">15</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/15.jpg" alt="Photo 15">
+          </div>
+          <div class="card-back">
+            Why did the cookie go to the hospital? Because it felt crummy.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 16 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">16</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/16.jpg" alt="Photo 16">
+          </div>
+          <div class="card-back">
+            How do cows stay up to date? They read the moos-paper.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 17 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">17</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/17.jpg" alt="Photo 17">
+          </div>
+          <div class="card-back">
+            What do you call a fish wearing a bowtie? Sofishticated.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 18 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">18</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/18.jpg" alt="Photo 18">
+          </div>
+          <div class="card-back">
+            What's brown and sticky? A stick.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 19 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">19</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/19.jpg" alt="Photo 19">
+          </div>
+          <div class="card-back">
+            Why can't your nose be 12 inches long? Because then it would be a foot!
+          </div>
+        </div>
+      </div>
+
+      <!-- May 20 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">20</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/20.jpg" alt="Photo 20">
+          </div>
+          <div class="card-back">
+            Why did the tomato blush? Because it saw the salad dressing.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 21 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">21</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/21.jpg" alt="Photo 21">
+          </div>
+          <div class="card-back">
+            How do you make holy water? You boil the hell out of it.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 22 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">22</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/22.jpg" alt="Photo 22">
+          </div>
+          <div class="card-back">
+            Why did the scarecrow win an award? Because he was outstanding in his field.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 23 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">23</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/23.jpg" alt="Photo 23">
+          </div>
+          <div class="card-back">
+            What do you get when you cross a snowman and a dog? Frostbite.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 24 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">24</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/24.jpg" alt="Photo 24">
+          </div>
+          <div class="card-back">
+            Why did the music teacher go to jail? Because she got caught with too many sharp objects.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 25 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">25</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/25.jpg" alt="Photo 25">
+          </div>
+          <div class="card-back">
+            What's orange and sounds like a parrot? A carrot.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 26 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">26</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/26.gif" alt="Photo 26">
+          </div>
+          <div class="card-back">
+            Why did the coffee file a police report? It got mugged.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 27 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">27</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/27.jpg" alt="Photo 27">
+          </div>
+          <div class="card-back">
+            What did one wall say to the other wall? I'll meet you at the corner.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 28 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">28</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/28.jpg" alt="Photo 28">
+          </div>
+          <div class="card-back">
+            Why don't elephants use computers? They're afraid of the mouse.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 29 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">29</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/29.jpg" alt="Photo 29">
+          </div>
+          <div class="card-back">
+            How do you catch a squirrel? Climb a tree and act like a nut.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 30 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">30</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/30.jpg" alt="Photo 30">
+          </div>
+          <div class="card-back">
+            Why did the chicken go to the seance? To talk to the other side.
+          </div>
+        </div>
+      </div>
+
+      <!-- May 31 -->
+      <div class="card" onclick="this.classList.toggle('flipped')">
+        <div class="day-number">31</div>
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="./assets/31.jpg" alt="Photo 31">
+          </div>
+          <div class="card-back">
+            Why can't you give Elsa a balloon? Because she'll let it go.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
